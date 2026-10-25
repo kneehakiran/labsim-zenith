@@ -1,0 +1,246 @@
+/* The titration experiment screen */
+
+.lab {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
+}
+.lab-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+.lab-setup {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.lab-setup span {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.banner {
+  background: #2a2000;
+  border: 1px solid var(--warn);
+  color: #ffe08a;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  margin: 0.8rem 0;
+}
+
+.lab-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 340px) 1fr;
+  gap: 0 1rem;
+  align-items: start;
+}
+.lab-grid .bench {
+  grid-row: span 2;
+}
+.lab-grid .graph {
+  grid-column: 1 / -1;
+}
+.lab-grid .feedback {
+  grid-column: 2;
+}
+
+.apparatus-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  gap: 0.5rem;
+}
+.apparatus-row figure {
+  margin: 0;
+  text-align: center;
+  flex: 1;
+}
+.apparatus-row figcaption {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.apparatus {
+  width: 100%;
+  max-height: 320px;
+  color: #cfe6ff;
+}
+.apparatus.burette {
+  max-width: 120px;
+}
+.apparatus.flask {
+  max-width: 190px;
+}
+
+.meters {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin: 0.8rem 0 0;
+}
+.meters div {
+  background: #020d1a;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 0.5rem 0.8rem;
+}
+.meters dt {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.meters dd {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+/* animations */
+.drop {
+  animation: drip 0.7s ease-in forwards;
+}
+@keyframes drip {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(28px);
+    opacity: 0;
+  }
+}
+.flask.swirl {
+  animation: swirl 0.9s ease-in-out;
+  transform-origin: 50% 90%;
+}
+@keyframes swirl {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  25% {
+    transform: rotate(4deg);
+  }
+  75% {
+    transform: rotate(-4deg);
+  }
+}
+
+/* feedback */
+.feedback ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.4rem 0 0;
+}
+.hint {
+  background: #06243f;
+  border-left: 4px solid var(--accent);
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+}
+.msg {
+  border-left: 4px solid var(--accent);
+  background: #06182a;
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  margin: 0.4rem 0;
+}
+.msg p {
+  margin: 0.2rem 0 0;
+}
+.msg.critical {
+  border-left-color: var(--bad);
+}
+.msg.major {
+  border-left-color: var(--warn);
+}
+.msg.minor {
+  border-left-color: var(--accent);
+}
+.msg.info {
+  border-left-color: var(--muted);
+}
+.msg .fix {
+  color: var(--accent);
+}
+
+/* chart */
+.ph-chart {
+  width: 100%;
+  height: auto;
+  max-height: 340px;
+}
+.ph-chart .grid {
+  stroke: rgba(255, 255, 255, 0.08);
+}
+.ph-chart .frame {
+  fill: none;
+  stroke: var(--line);
+}
+.ph-chart .tick {
+  fill: var(--muted);
+  font-size: 11px;
+}
+.ph-chart .axis-label {
+  fill: var(--muted);
+  font-size: 12px;
+}
+.ph-chart .curve-ideal {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.ph-chart .curve-student {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.ph-chart .dot,
+.ph-chart .now-dot {
+  fill: var(--accent);
+}
+.ph-chart .now-dot {
+  stroke: #fff;
+  stroke-width: 2;
+}
+.ph-chart .eq-line {
+  stroke: var(--ok);
+  stroke-dasharray: 3 3;
+}
+.ph-chart .eq-dot {
+  fill: var(--ok);
+}
+.ph-chart .eq-label {
+  fill: var(--ok);
+  font-size: 12px;
+}
+
+/* modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  z-index: 20;
+}
+.modal {
+  max-width: 460px;
+  width: 100%;
+}
+
+@media (max-width: 760px) {
+  .lab-grid {
+    grid-template-columns: 1fr;
+  }
+  .lab-grid .bench,
+  .lab-grid .feedback {
+    grid-row: auto;
+    grid-column: auto;
+  }
+}
